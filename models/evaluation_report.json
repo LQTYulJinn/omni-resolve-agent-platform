@@ -1,0 +1,62 @@
+{
+  "summary": {
+    "total_val_samples": 6,
+    "overall_accuracy": 0.1667,
+    "automation_rate": 0.8333,
+    "escalation_to_human_rate": 0.1667,
+    "confidence_threshold": 0.6
+  },
+  "per_class_performance": {
+    "refund_approved": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1_score": 0.0,
+      "support": 1
+    },
+    "refund_rejected": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1_score": 0.0,
+      "support": 2
+    },
+    "escalate_to_human": {
+      "precision": 0.25,
+      "recall": 0.3333,
+      "f1_score": 0.2857,
+      "support": 3
+    }
+  },
+  "confusion_matrix": [
+    [
+      0,
+      0,
+      1
+    ],
+    [
+      0,
+      0,
+      2
+    ],
+    [
+      0,
+      2,
+      1
+    ]
+  ],
+  "slice_based_evaluation": {
+    "multimodal_with_image_accuracy": 0.1667,
+    "unimodal_text_only_accuracy": 0.0,
+    "high_value_transaction_accuracy": 0.0,
+    "low_value_transaction_accuracy": 0.5,
+    "performance_by_claim_type": {
+      "damaged_item": {
+        "count": 4,
+        "accuracy": 0.25
+      },
+      "fake_item": {
+        "count": 2,
+        "accuracy": 0.0
+      }
+    }
+  }
+}

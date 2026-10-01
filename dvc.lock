@@ -141,3 +141,31 @@ stages:
       hash: md5
       md5: 093a46e229c0686ada15b379b9751760
       size: 637
+  evaluate_production_model:
+    cmd: python src/evaluation/run_evaluation.py
+    deps:
+    - path: data/processed/features/val_features.npz
+      hash: md5
+      md5: d286606ec824e4f35ea113d41025c656
+      size: 80710
+    - path: data/processed/val_manifest.parquet
+      hash: md5
+      md5: 044052efcebb1e17b8b3729171e2ec76
+      size: 8593
+    - path: models/optimized/multimodal_fusion.onnx
+      hash: md5
+      md5: 525d23dc248d04913257fbd5675bd1e5
+      size: 44868
+    - path: src/evaluation/evaluator.py
+      hash: md5
+      md5: a2409c29926bedabccf20410dd478f28
+      size: 4373
+    - path: src/evaluation/run_evaluation.py
+      hash: md5
+      md5: b5bcdb89dc5f4957cd11ea9c746851f2
+      size: 3299
+    outs:
+    - path: models/evaluation_report.json
+      hash: md5
+      md5: b12b510562c0dc3b82080e8a68299467
+      size: 1190
