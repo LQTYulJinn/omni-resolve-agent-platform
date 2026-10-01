@@ -89,3 +89,55 @@ stages:
       hash: md5
       md5: d286606ec824e4f35ea113d41025c656
       size: 80710
+  train_and_benchmark:
+    cmd: python src/models/train_and_benchmark.py
+    deps:
+    - path: data/processed/features/train_features.npz
+      hash: md5
+      md5: 621f6572563eb5cae1ee2a1272338dae
+      size: 334156
+    - path: data/processed/features/val_features.npz
+      hash: md5
+      md5: d286606ec824e4f35ea113d41025c656
+      size: 80710
+    - path: src/models/network.py
+      hash: md5
+      md5: 7ff3143fc27007d7f75686959ffe109d
+      size: 2026
+    - path: src/models/train_and_benchmark.py
+      hash: md5
+      md5: 7aab56e11df98e56d6ac9bf63069af21
+      size: 7999
+    outs:
+    - path: models/checkpoints/best_fusion_model.pt
+      hash: md5
+      md5: b71bc180aa115c6e0e88c5c76c10bbc0
+      size: 49110
+    - path: models/model_selection_evidence.json
+      hash: md5
+      md5: b852e2d3551205f5cac3bca9ef468b5a
+      size: 1508
+  optimize_and_export:
+    cmd: python src/models/export_optimized.py
+    deps:
+    - path: models/checkpoints/best_fusion_model.pt
+      hash: md5
+      md5: b71bc180aa115c6e0e88c5c76c10bbc0
+      size: 49110
+    - path: src/models/export_optimized.py
+      hash: md5
+      md5: 6e13d93fad775c94b76f5677e066a0d5
+      size: 5749
+    - path: src/models/network.py
+      hash: md5
+      md5: 7ff3143fc27007d7f75686959ffe109d
+      size: 2026
+    outs:
+    - path: models/optimized/multimodal_fusion.onnx
+      hash: md5
+      md5: 525d23dc248d04913257fbd5675bd1e5
+      size: 44868
+    - path: models/optimized/optimization_benchmark.json
+      hash: md5
+      md5: 093a46e229c0686ada15b379b9751760
+      size: 637

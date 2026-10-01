@@ -1,5 +1,5 @@
 # dvc.yaml
-# OmniResolve Multimodal Data & Feature Pipeline DAG
+# OmniResolve Multimodal Data, Feature & Model Pipeline DAG
 stages:
   prepare_multimodal_dataset:
     cmd: python src/data/pipeline.py --config configs/data_pipeline.yaml
@@ -32,4 +32,29 @@ stages:
       - data/processed/features/val_features.npz
     metrics:
       - data/processed/features/feature_metadata.json:
+          cache: false
+
+  train_and_benchmark:
+    cmd: python src/models/train_and_benchmark.py
+    deps:
+      - src/models/network.py
+      - src/models/train_and_benchmark.py
+      - data/processed/features/train_features.npz
+      - data/processed/features/val_features.npz
+    outs:
+      - models/checkpoints/best_fusion_model.pt
+    metrics:
+      - models/model_selection_evidence.json:
+          cache: false
+
+  optimize_and_export:
+    cmd: python src/models/export_optimized.py
+    deps:
+      - src/models/network.py
+      - src/models/export_optimized.py
+      - models/checkpoints/best_fusion_model.pt
+    outs:
+      - models/optimized/multimodal_fusion.onnx
+    metrics:
+      - models/optimized/optimization_benchmark.json:
           cache: false

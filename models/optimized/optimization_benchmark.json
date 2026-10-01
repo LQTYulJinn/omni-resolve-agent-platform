@@ -1,0 +1,27 @@
+{
+  "onnx_size_mb": 0.043,
+  "parity_max_diff": 2.384185791015625e-07,
+  "results": {
+    "batch_1": {
+      "pytorch_latency_p50_ms": 0.59,
+      "pytorch_rps": 1692.3,
+      "onnx_latency_p50_ms": 0.13,
+      "onnx_rps": 7812.5,
+      "speedup": 4.62
+    },
+    "batch_4": {
+      "pytorch_latency_p50_ms": 1.15,
+      "pytorch_rps": 3465.8,
+      "onnx_latency_p50_ms": 0.43,
+      "onnx_rps": 9368.8,
+      "speedup": 2.7
+    },
+    "batch_8": {
+      "pytorch_latency_p50_ms": 2.02,
+      "pytorch_rps": 3966.7,
+      "onnx_latency_p50_ms": 0.91,
+      "onnx_rps": 8758.5,
+      "speedup": 2.21
+    }
+  }
+}
