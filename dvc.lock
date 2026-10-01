@@ -1,0 +1,59 @@
+schema: '2.0'
+stages:
+  prepare_multimodal_dataset:
+    cmd: python src/data/pipeline.py --config configs/data_pipeline.yaml
+    deps:
+    - path: data/raw/tickets.jsonl
+      hash: md5
+      md5: 2e78eae364e9e0943c7b5dc311152804
+      size: 12021
+    - path: src/data/pipeline.py
+      hash: md5
+      md5: 5c0f0a0ac8bfdc9532441310f0ed0493
+      size: 1116
+    - path: src/data/processor.py
+      hash: md5
+      md5: 9e24318dcc0ee71427f248fc1267b37a
+      size: 6315
+    - path: src/data/schema.py
+      hash: md5
+      md5: f9e6fe22c837677e555421160d997cc8
+      size: 1966
+    - path: src/data/validator.py
+      hash: md5
+      md5: b7859913d79386e80187fe150917476a
+      size: 3598
+    params:
+      configs/data_pipeline.yaml:
+        split:
+          val_size: 0.2
+          group_column: user_id
+          random_seed: 42
+        validation_rules:
+          allowed_image_formats:
+          - .jpg
+          - .jpeg
+          - .png
+          - .webp
+          min_image_resolution:
+          - 64
+          - 64
+          max_image_resolution:
+          - 4096
+          - 4096
+          min_text_length: 10
+          max_text_length: 2000
+          mask_pii: true
+    outs:
+    - path: data/processed/train_manifest.parquet
+      hash: md5
+      md5: ff465399c4772be051584ab7338ea396
+      size: 9495
+    - path: data/processed/val_manifest.parquet
+      hash: md5
+      md5: 044052efcebb1e17b8b3729171e2ec76
+      size: 8593
+    - path: data/processed/validation_report.yaml
+      hash: md5
+      md5: 50ab815c4b2328da9481a6e61bbfde4f
+      size: 908

@@ -1,0 +1,20 @@
+rejection_summary:
+  corrupted_images: 1
+  invalid_text: 1
+  reasons:
+  - 'Ticket TCK-CORRUPT-IMG: Corrupted image file: cannot identify image file ''C:\\Users\\thinh\\.gemini\\antigravity\\scratch\\omni_resolve_platform\\data\\raw\\images\\claim_corrupt.jpg'''
+  - 'Ticket TCK-SHORT-TXT: Text length (3) below minimum (10)'
+  - "Line 33 schema error: 1 validation error for ClaimTicketRaw\nclaim_type\n  Input\
+    \ should be 'damaged_item', 'wrong_item', 'fake_item', 'transaction_dispute' or\
+    \ 'delivery_delayed' [type=enum, input_value='some_random_unsupported_claim_type',\
+    \ input_type=str]\n    For further information visit https://errors.pydantic.dev/2.10/v/enum"
+  schema_errors: 1
+  total_records: 33
+  valid_records: 30
+splits:
+  multimodal_ratio_train: 1.0
+  multimodal_ratio_val: 1.0
+  train_count: 24
+  unique_users_train: 10
+  unique_users_val: 3
+  val_count: 6

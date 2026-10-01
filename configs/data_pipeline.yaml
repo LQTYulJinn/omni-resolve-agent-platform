@@ -1,0 +1,25 @@
+# configs/data_pipeline.yaml
+# Configuration for OmniResolve Multimodal Data Pipeline
+
+raw_data:
+  tickets_file: "data/raw/tickets.jsonl"
+  images_dir: "data/raw/images"
+
+processed_data:
+  output_dir: "data/processed"
+  manifest_train: "data/processed/train_manifest.parquet"
+  manifest_val: "data/processed/val_manifest.parquet"
+  validation_report: "data/processed/validation_report.yaml"
+
+validation_rules:
+  allowed_image_formats: [".jpg", ".jpeg", ".png", ".webp"]
+  min_image_resolution: [64, 64] # min width, min height
+  max_image_resolution: [4096, 4096]
+  min_text_length: 10
+  max_text_length: 2000
+  mask_pii: true # Tự động ẩn số thẻ, số điện thoại, email
+
+split:
+  val_size: 0.2
+  group_column: "user_id" # Chống rò rỉ dữ liệu cùng 1 người dùng giữa train và val
+  random_seed: 42
