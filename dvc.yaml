@@ -1,5 +1,5 @@
 # dvc.yaml
-# OmniResolve Multimodal Data Pipeline DAG Stage
+# OmniResolve Multimodal Data & Feature Pipeline DAG
 stages:
   prepare_multimodal_dataset:
     cmd: python src/data/pipeline.py --config configs/data_pipeline.yaml
@@ -18,4 +18,18 @@ stages:
       - data/processed/val_manifest.parquet
     metrics:
       - data/processed/validation_report.yaml:
+          cache: false
+
+  build_multimodal_features:
+    cmd: python src/data/build_features.py
+    deps:
+      - src/data/feature_extractor.py
+      - src/data/build_features.py
+      - data/processed/train_manifest.parquet
+      - data/processed/val_manifest.parquet
+    outs:
+      - data/processed/features/train_features.npz
+      - data/processed/features/val_features.npz
+    metrics:
+      - data/processed/features/feature_metadata.json:
           cache: false

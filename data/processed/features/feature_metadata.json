@@ -1,0 +1,16 @@
+{
+  "num_train": 24,
+  "num_val": 6,
+  "text_embedding_dim": 64,
+  "tabular_feature_dim": 6,
+  "image_tensor_shape": [
+    3,
+    224,
+    224
+  ],
+  "vocab_size": 88,
+  "amount_scale_range": [
+    3.76630335107874,
+    6.104190372159825
+  ]
+}

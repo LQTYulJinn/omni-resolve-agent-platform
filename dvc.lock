@@ -57,3 +57,35 @@ stages:
       hash: md5
       md5: 50ab815c4b2328da9481a6e61bbfde4f
       size: 908
+  build_multimodal_features:
+    cmd: python src/data/build_features.py
+    deps:
+    - path: data/processed/train_manifest.parquet
+      hash: md5
+      md5: ff465399c4772be051584ab7338ea396
+      size: 9495
+    - path: data/processed/val_manifest.parquet
+      hash: md5
+      md5: 044052efcebb1e17b8b3729171e2ec76
+      size: 8593
+    - path: src/data/build_features.py
+      hash: md5
+      md5: b4f06c0133905d803e68e9d638ce06a8
+      size: 3740
+    - path: src/data/feature_extractor.py
+      hash: md5
+      md5: e21deed17cf3b8bbe4bb2a0a6958ea34
+      size: 4876
+    outs:
+    - path: data/processed/features/feature_metadata.json
+      hash: md5
+      md5: e783674ba97b3c15936e19f6cab6161e
+      size: 258
+    - path: data/processed/features/train_features.npz
+      hash: md5
+      md5: 621f6572563eb5cae1ee2a1272338dae
+      size: 334156
+    - path: data/processed/features/val_features.npz
+      hash: md5
+      md5: d286606ec824e4f35ea113d41025c656
+      size: 80710
