@@ -1,0 +1,59 @@
+{
+  "timestamp_utc": "2026-10-01T12:57:25.501715+00:00",
+  "baseline_summary": {
+    "samples": 24,
+    "mean_amount": 218.19041666666666
+  },
+  "simulation_normal_batch": {
+    "status": "DRIFT_DETECTED",
+    "overall_drift_flag": true,
+    "batch_size": 50,
+    "checks": {
+      "transaction_amount_drift": {
+        "feature": "transaction_amount",
+        "test_type": "Kolmogorov-Smirnov (KS-Test)",
+        "statistic": 0.5417,
+        "p_value": 5.867697956590237e-05,
+        "drift_detected": true,
+        "baseline_mean": 218.19,
+        "production_mean": 94.12,
+        "alert": "CRITICAL_DRIFT"
+      },
+      "claim_type_drift": {
+        "feature": "claim_type",
+        "test_type": "Chi-Square Goodness-of-Fit",
+        "statistic": 1.6446,
+        "p_value": 0.800759910383274,
+        "drift_detected": false,
+        "alert": "STABLE"
+      }
+    },
+    "recommended_action": "TRIGGER_RETRAINING_PIPELINE: Retrain model via 'dvc repro' with newly captured distribution."
+  },
+  "simulation_drifted_batch": {
+    "status": "DRIFT_DETECTED",
+    "overall_drift_flag": true,
+    "batch_size": 50,
+    "checks": {
+      "transaction_amount_drift": {
+        "feature": "transaction_amount",
+        "test_type": "Kolmogorov-Smirnov (KS-Test)",
+        "statistic": 0.94,
+        "p_value": 3.390852375544526e-16,
+        "drift_detected": true,
+        "baseline_mean": 218.19,
+        "production_mean": 643.27,
+        "alert": "CRITICAL_DRIFT"
+      },
+      "claim_type_drift": {
+        "feature": "claim_type",
+        "test_type": "Chi-Square Goodness-of-Fit",
+        "statistic": 189.1805,
+        "p_value": 7.950329512067257e-40,
+        "drift_detected": true,
+        "alert": "CATEGORY_DRIFT"
+      }
+    },
+    "recommended_action": "TRIGGER_RETRAINING_PIPELINE: Retrain model via 'dvc repro' with newly captured distribution."
+  }
+}

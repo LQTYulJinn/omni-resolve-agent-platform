@@ -169,3 +169,23 @@ stages:
       hash: md5
       md5: b12b510562c0dc3b82080e8a68299467
       size: 1190
+  monitor_data_drift:
+    cmd: python src/monitoring/run_drift_monitor.py
+    deps:
+    - path: data/processed/train_manifest.parquet
+      hash: md5
+      md5: ff465399c4772be051584ab7338ea396
+      size: 9495
+    - path: src/monitoring/drift_detector.py
+      hash: md5
+      md5: 1b977558d710ec37b4121ff4ddffc47f
+      size: 3915
+    - path: src/monitoring/run_drift_monitor.py
+      hash: md5
+      md5: 95586bf1030bb7ad613b1900a1f98e54
+      size: 4422
+    outs:
+    - path: data/processed/drift_report.json
+      hash: md5
+      md5: dd06452737f4bc0dfab789a0f6d8da6f
+      size: 1924
