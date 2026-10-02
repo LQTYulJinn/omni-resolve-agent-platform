@@ -1,5 +1,5 @@
 # dvc.yaml
-# OmniResolve Multimodal Data, Feature, Training & Evaluation DAG
+# OmniResolve Complete 6-Stage End-to-End MLOps Pipeline DAG
 stages:
   prepare_multimodal_dataset:
     cmd: python src/data/pipeline.py --config configs/data_pipeline.yaml
@@ -69,4 +69,14 @@ stages:
       - data/processed/features/val_features.npz
     metrics:
       - models/evaluation_report.json:
+          cache: false
+
+  monitor_data_drift:
+    cmd: python src/monitoring/run_drift_monitor.py
+    deps:
+      - src/monitoring/drift_detector.py
+      - src/monitoring/run_drift_monitor.py
+      - data/processed/train_manifest.parquet
+    metrics:
+      - data/processed/drift_report.json:
           cache: false
